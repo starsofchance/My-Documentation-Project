@@ -251,10 +251,10 @@ ul {
   background-color: lightgreen; /* New class for clicked state */
 }
 .condBtn.deleteBtn {
-  background-color: #db2777;
+  background-color: #78716c;
   padding: 6px 12px;
 }
 
-.condBtn.deleteBtn.active {
+.condBtn.deleteBtn:hover {
   background-color: #b91c1c;
 }
