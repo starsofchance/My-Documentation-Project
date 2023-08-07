@@ -12,7 +12,7 @@ body {
   background-color: #292524;
   color: #fafaf9;
   font-family: "Sono", sans-serif;
-  padding: 48px 64px;
+  padding: 48px 64px 0px;
 }
 #root {
   max-width: 1200px;
@@ -30,6 +30,7 @@ body {
     font-size: 20px;
     white-space: nowrap;
   }
+
   .header .btn {
     font-size: 20px;
     padding: 10px 22px 7px;
@@ -40,6 +41,8 @@ body {
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: 48px;
+
+  height: calc(100vh - 48px - 68px);
 }
 @media (max-width: 900px) {
   .main {
@@ -47,7 +50,10 @@ body {
   }
 }
 /* elements */
-
+section {
+  overflow: scroll;
+  padding-bottom: 40px;
+}
 h1 {
   font-size: 42px;
   text-transform: uppercase;
@@ -213,7 +219,7 @@ ul {
 
 @media (max-width: 1000px) {
   body {
-    padding: 32px 48px;
+    /* padding: 32px 48px; */
   }
 
   .docForm {

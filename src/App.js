@@ -108,7 +108,7 @@ function isValidUrl(string) {
 
 function DocForm({ setDocs, setShowForm }) {
   const [inputText, setInputText] = useState("");
-  const [inputSource, setSource] = useState("http://awdaw.com");
+  const [inputSource, setSource] = useState("");
   const [inputCategory, setCategory] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const textLength = inputText.length;
