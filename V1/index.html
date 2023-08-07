@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Coiny&family=Sono:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>My Documentation</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <img src="logo.png" alt="logo of the My Documentation app" />
+          <h1>My Documentation</h1>
+        </div>
+ 
+        <button class="btn btn-large addNew">Add New</button>
+      </header>
+
+      <form action="" class="docForm hidden">
+        <input type="text" placeholder="Add what you learned" />
+        <span>400</span>
+        <input type="text" placeholder="Add source" />
+        <select name="" id="">
+          <!-- option should always have a value attribute -->
+
+          <option value="">Category</option>
+          <option value="All">All</option>
+          <option value="HTML5">HTML5</option>
+          <option value="CSS3">CSS3</option>
+          <option value="JavaScript">JavaScript</option>
+        </select>
+        <button class="btn  btn-post">post</button>
+      </form>
+
+      <main class="main">
+        <aside>
+          <ul>
+            <li class="category">
+              <button class="btn btn-all">All</button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #3b82f6"
+              >
+                HTML5
+              </button>
+            </li class="category">
+            <li class="category">
+              <button
+                style="background-color: #16a34a"
+                class="btn btn-category"
+              >
+                CSS3
+              </button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #ef4444"
+              >
+                JavaScript
+              </button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #eab308"
+              >
+                React
+              </button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #db2777"
+              >
+                JQuery
+              </button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #14b8a6"
+              >
+                Nodejs
+              </button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #f97316"
+              >
+                Bootstrap
+              </button>
+            </li>
+            <li class="category">
+              <button
+                class="btn btn-category"
+                style="background-color: #8b5cf6"
+              >
+                DOM
+              </button>
+            </li>
+          </ul>
+        </aside>
+        <section>
+          <ul class="doc-list">
+            <li class="documentation">
+              <p>
+                React is being developed by Meta (formerly facebook)
+                <a
+                  class="source"
+                  href="https://opensource.fb.com/"
+                  target="_blank"
+                  >(Source)</a
+                >
+              </p>
+              <span class="tag" style="background-color: #3b82f6">HTML5</span>
+              <div class="condition">
+                <button lass="condBtn">✅Used</button>
+                <button lass="condBtn">❌Deprecated</button>
+              </div>
+            </li>
+            <li class="documentation">
+              <p>
+                Millennial dads spend 3 times as much time with their kids than
+                their fathers spent with them. In 1982, 43% of fathers had never
+                changed a diaper. Today, that number is down to 3%
+                <a
+                  href="https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids"
+                  target="_blank"
+                  class="source"
+                  >(Source)</a
+                >
+              </p>
+              <span class="tag" style="background-color: #16a34a">CSS3</span>
+              <div class="condition">
+                <button class="condBtn">✅Used</button>
+                <button class="condBtn">❌Deprecated</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

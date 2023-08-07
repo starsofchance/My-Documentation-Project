@@ -1,0 +1,236 @@
+* {
+  /* removing browser margin and padding: */
+  margin: 0;
+  padding: 0;
+  /* in order for the height and width to include padding, the next line is necessary */
+  box-sizing: border-box;
+}
+
+/* font-family: 'Coiny', cursive;
+font-family: 'Sono', sans-serif; */
+body {
+  background-color: #292524;
+  color: #fafaf9;
+  font-family: "Sono", sans-serif;
+  padding: 48px 64px;
+}
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* main layout */
+.header {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 900px) {
+  .header h1 {
+    font-size: 20px;
+    white-space: nowrap;
+  }
+  .header .btn {
+    font-size: 20px;
+    padding: 10px 22px 7px;
+    white-space: nowrap;
+  }
+}
+.main {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 48px;
+}
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
+/* elements */
+
+h1 {
+  font-size: 42px;
+  text-transform: uppercase;
+  font-family: "coiny", sans-serif, cursive;
+  /* to fix the padding caused by the font */
+  margin-top: 6px;
+}
+ul {
+  list-style: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.logo img {
+  height: 68px;
+  width: 68px;
+}
+.category {
+  margin-bottom: 16px;
+}
+.documentation {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  background-color: #44403c;
+  padding: 16px 24px;
+  letter-spacing: -1px;
+  display: flex;
+  /* flex direction by default is set to row */
+  align-items: center;
+  border-radius: 16px;
+  gap: 24px;
+}
+@media (max-width: 1200px) {
+  .documentation {
+    flex-direction: column;
+    /* with flex direction column, we have horizontal alignment */
+    /* we reduce the gap because now we want the vertical gap we actually switch the main axes with the secondary axes*/
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+.loadingMassage {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+.condition {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+}
+.condition button {
+  border: none;
+  background-color: #78716c;
+  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  color: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.condition button:hover {
+  background-color: #292524;
+}
+.tag {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: "coiny", cursive;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 100px;
+}
+/* we can write multiple selector for the same declaration block  */
+.source:link,
+.source:visited {
+  /* only styles the anchor tags with a href attribute */
+  color: #a8a29e;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: 1s;
+}
+
+.source:hover,
+.source:active {
+  color: #3b82f6;
+}
+.btn:hover {
+  transform: scale(110%) rotate(-2deg);
+}
+.btn {
+  border: none;
+  font-family: "coiny", sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 17px;
+  padding: 16px 0 13px;
+  background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+  color: inherit;
+  transition: 0.3s;
+  cursor: pointer;
+  border-radius: 100px;
+}
+.btn-large {
+  font-size: 20px;
+  padding: 20px 32px 17px;
+}
+.btn-post {
+  font-size: 18px;
+  padding: 15px 30px 10px;
+}
+.btn-all {
+  margin-bottom: 16px;
+  width: 100%;
+}
+.btn-category {
+  width: 100%;
+  background-image: none;
+}
+.docForm {
+  background-color: #44403c;
+  margin-bottom: 40px;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 16px;
+}
+.docForm input,
+.docForm select {
+  width: 200px;
+  background-color: #78716c;
+  border: none;
+  border-radius: 100px;
+  padding: 14px;
+  color: inherit;
+  font-family: inherit;
+}
+.docForm input::placeholder {
+  color: #a8a29e;
+}
+.docForm input:first-child {
+  flex-grow: 1;
+}
+.docForm span {
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 18px;
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 32px 48px;
+  }
+
+  .docForm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .docForm input,
+  .docForm select {
+    width: auto;
+  }
+}
+.condBtn {
+  margin-right: 5px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: white;
+}
