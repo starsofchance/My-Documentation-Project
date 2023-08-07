@@ -152,7 +152,7 @@ function DocForm({ setDocs, setShowForm }) {
       // .select()
 
       // 4.add the new fact to the UI: add the fact tp state
-      setDocs((docs) => [newDocumentation[0], ...docs]);
+      if (!error) setDocs((docs) => [newDocumentation[0], ...docs]);
       // 5. reset the input fields
       setInputText("");
       setSource("");
@@ -239,11 +239,57 @@ function DocList({ docs }) {
   );
 }
 function Docs({ doc }) {
+  const [usedButtonClicked, setUsedButtonClicked] = useState(false);
+  const [deprecatedButtonClicked, setDeprecatedButtonClicked] = useState(false);
+
+  async function handleStatus(property) {
+    let usedValue = doc.used;
+    let deprecatedValue = doc.deprecated;
+
+    if (property === "used") {
+      if (usedButtonClicked) {
+        usedValue = null;
+        deprecatedValue = null;
+      } else {
+        usedValue = true;
+        deprecatedValue = false;
+      }
+    } else if (property === "deprecated") {
+      if (deprecatedButtonClicked) {
+        deprecatedValue = null;
+        usedValue = null;
+      } else {
+        deprecatedValue = true;
+        usedValue = false;
+      }
+    }
+
+    const { data: updatedDoc, error } = await supabase
+      .from("documentation")
+      .update({ used: usedValue, deprecated: deprecatedValue })
+      .eq("id", doc.id)
+      .select();
+
+    if (!error) {
+      setUsedButtonClicked(property === "used" ? !usedButtonClicked : false);
+      setDeprecatedButtonClicked(
+        property === "deprecated" ? !deprecatedButtonClicked : false
+      );
+    }
+
+    console.log(updatedDoc);
+  }
+
   return (
     <li className="documentation">
       <p>
         {doc.text}
-        <a className="source" href={doc.source} target="_blank">
+        <a
+          className="source"
+          href={doc.source}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           (Source)
         </a>
       </p>
@@ -257,10 +303,74 @@ function Docs({ doc }) {
         {doc.category}
       </span>
       <div className="condition">
-        <button className="condBtn">✅Used{doc.used}</button>
-        <button className="condBtn">❌Deprecated{doc.deprecated}</button>
+        <button
+          className={`condBtn ${usedButtonClicked ? "clicked" : ""}`}
+          onClick={() => handleStatus("used")}
+        >
+          ✅Used
+        </button>
+        <button
+          className={`condBtn ${deprecatedButtonClicked ? "clicked" : ""}`}
+          onClick={() => handleStatus("deprecated")}
+        >
+          ❌Deprecated
+        </button>
       </div>
     </li>
   );
 }
+
+// function Docs({ doc }) {
+
+//   const [usedClicked, setUsedClicked] = useState(false);
+//   const [deprecatedClicked, setDeprecatedClicked] = useState(false);
+//   async function handleStatus(status) {
+//     const { data: updatedDoc, error } = await supabase
+//       .from("documentation")
+//       .update({ [status]: !doc[status] })
+//       .eq("id", doc.id)
+//       .select();
+//     console.log(updatedDoc);
+//     if (!error) {
+//       if (status === "used") {
+//         setUsedClicked(!usedClicked);
+//       } else if (status === "deprecated") {
+//         setDeprecatedClicked(!deprecatedClicked);
+//       }
+//     }
+//   }
+//   return (
+//     <li className="documentation">
+//       <p>
+//         {doc.text}
+//         <a className="source" href={doc.source} target="_blank">
+//           (Source)
+//         </a>
+//       </p>
+//       <span
+//         className="tag"
+//         style={{
+//           backgroundColor: CATEGORIES.find((cat) => cat.name === doc.category)
+//             .color,
+//         }}
+//       >
+//         {doc.category}
+//       </span>
+//       <div className="condition">
+//         <button
+//           className={`condBtn ${usedClicked ? "clicked" : ""}`}
+//           onClick={() => handleStatus("used")}
+//         >
+//           ✅Used{doc.used}
+//         </button>
+//         <button
+//           className={`condBtn ${deprecatedClicked ? "clicked" : ""}`}
+//           onClick={() => handleStatus("deprecated")}
+//         >
+//           ❌Deprecated{doc.deprecated}
+//         </button>
+//       </div>
+//     </li>
+//   );
+// }
 export default App;

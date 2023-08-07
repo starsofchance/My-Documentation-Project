@@ -233,4 +233,9 @@ ul {
   padding: 2px 6px;
   border-radius: 3px;
   color: white;
+  background-color: #78716c;
+  transition: background-color 0.3s;
+}
+.condBtn.clicked {
+  background-color: lightgreen; /* New class for clicked state */
 }
