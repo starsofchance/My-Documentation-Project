@@ -320,16 +320,16 @@ function Docs({ doc, onDelete }) {
           className={`condBtn ${usedButtonClicked ? "clicked" : ""}`}
           onClick={() => handleStatus("used")}
         >
-          ✅
+          ✅Used
         </button>
         <button
           className={`condBtn ${deprecatedButtonClicked ? "clicked" : ""}`}
           onClick={() => handleStatus("deprecated")}
         >
-          ❌
+          ❌Deprecated
         </button>
         <button className="condBtn deleteBtn" onClick={handleDelete}>
-          🗑️
+          🗑️ Delete
         </button>
       </div>
     </li>

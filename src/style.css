@@ -41,8 +41,8 @@ body {
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: 48px;
-
-  height: calc(100vh - 48px - 68px);
+  /* calc(80vh - 60px - 68px) */
+  height: calc(80vh - 60px - 68px);
 }
 @media (max-width: 900px) {
   .main {
@@ -54,6 +54,7 @@ body {
 section {
   overflow: scroll;
   padding-bottom: 40px;
+  overflow-x: hidden;
 }
 h1 {
   font-size: 42px;
@@ -90,6 +91,9 @@ ul {
   align-items: center;
   border-radius: 16px;
   gap: 24px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 @media (max-width: 1200px) {
   .documentation {
@@ -220,7 +224,7 @@ ul {
 
 @media (max-width: 1000px) {
   body {
-    /* padding: 32px 48px; */
+    padding: 32px 48px;
   }
 
   .docForm {
@@ -248,6 +252,7 @@ ul {
 }
 .condBtn.deleteBtn {
   background-color: #db2777;
+  padding: 6px 12px;
 }
 
 .condBtn.deleteBtn.active {
