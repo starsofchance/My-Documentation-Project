@@ -225,20 +225,24 @@ function CategoryFilter({ setCurrentCat }) {
   );
 }
 function DocList({ docs }) {
+  const [docsList, setDocsList] = useState(docs);
+  function handleDelete(id) {
+    setDocsList(docsList.filter((doc) => doc.id !== id));
+  }
   if (docs.length === 0)
     return <p className="loadingMassage">No Documentation in this category.</p>;
   return (
     <section>
       <ul className="doc-list">
-        {docs.map((doc) => (
-          <Docs key={doc.id} doc={doc} />
+        {docsList.map((doc) => (
+          <Docs key={doc.id} doc={doc} onDelete={handleDelete} />
         ))}
       </ul>
       <p>There are {docs.length} Documentation Entry in the Database.</p>
     </section>
   );
 }
-function Docs({ doc }) {
+function Docs({ doc, onDelete }) {
   const [usedButtonClicked, setUsedButtonClicked] = useState(false);
   const [deprecatedButtonClicked, setDeprecatedButtonClicked] = useState(false);
 
@@ -279,7 +283,16 @@ function Docs({ doc }) {
 
     console.log(updatedDoc);
   }
+  async function handleDelete() {
+    const { error } = await supabase
+      .from("documentation")
+      .delete()
+      .eq("id", doc.id);
 
+    if (!error) {
+      onDelete(doc.id);
+    }
+  }
   return (
     <li className="documentation">
       <p>
@@ -307,13 +320,16 @@ function Docs({ doc }) {
           className={`condBtn ${usedButtonClicked ? "clicked" : ""}`}
           onClick={() => handleStatus("used")}
         >
-          ✅Used
+          ✅
         </button>
         <button
           className={`condBtn ${deprecatedButtonClicked ? "clicked" : ""}`}
           onClick={() => handleStatus("deprecated")}
         >
-          ❌Deprecated
+          ❌
+        </button>
+        <button className="condBtn deleteBtn" onClick={handleDelete}>
+          🗑️
         </button>
       </div>
     </li>
