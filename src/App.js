@@ -1,22 +1,6 @@
 import { useEffect, useState } from "react";
 import supabase from "./supabase";
 import "./style.css";
-
-// function Counter() {
-//   const [count, setCount] = useState(0);
-//   return (
-//     <div>
-//       <span style={{ fontSize: "3em" }}>{count}</span>
-//       <button
-//         className="btn btn-large"
-//         onClick={() => setCount((curentCount) => curentCount + 1)}
-//       >
-//         +1
-//       </button>
-//     </div>
-//   );
-// }
-
 function App() {
   // part 1 of state variable:define state variable
   const [showForm, setShowForm] = useState(false);
@@ -123,16 +107,6 @@ function DocForm({ setDocs, setShowForm }) {
       inputCategory &&
       textLength <= 1000
     ) {
-      // 3.create a new fact object
-      // const newDocumentation = {
-      //   id: Math.round(Math.random() * 1000),
-      //   text: inputText,
-      //   source: inputSource,
-      //   category: inputCategory,
-      //   used: null,
-      //   deprecated: null,
-      //   createdIn: new Date().getFullYear(),
-      // };
       // new3: upload fact to supabase and receive new fact obj
       setIsUploading(true);
       const { data: newDocumentation, error } = await supabase
@@ -144,14 +118,6 @@ function DocForm({ setDocs, setShowForm }) {
       setIsUploading(false);
       console.log(newDocumentation);
 
-      //     const { data, error } = await supabase
-      // .from('documentation')
-      // .insert([
-      //   { some_column: 'someValue', other_column: 'otherValue' },
-      // ])
-      // .select()
-
-      // 4.add the new fact to the UI: add the fact tp state
       if (!error) setDocs((docs) => [newDocumentation[0], ...docs]);
       // 5. reset the input fields
       setInputText("");
@@ -353,57 +319,4 @@ function Docs({ doc, onDelete }) {
   );
 }
 
-// function Docs({ doc }) {
-
-//   const [usedClicked, setUsedClicked] = useState(false);
-//   const [deprecatedClicked, setDeprecatedClicked] = useState(false);
-//   async function handleStatus(status) {
-//     const { data: updatedDoc, error } = await supabase
-//       .from("documentation")
-//       .update({ [status]: !doc[status] })
-//       .eq("id", doc.id)
-//       .select();
-//     console.log(updatedDoc);
-//     if (!error) {
-//       if (status === "used") {
-//         setUsedClicked(!usedClicked);
-//       } else if (status === "deprecated") {
-//         setDeprecatedClicked(!deprecatedClicked);
-//       }
-//     }
-//   }
-//   return (
-//     <li className="documentation">
-//       <p>
-//         {doc.text}
-//         <a className="source" href={doc.source} target="_blank">
-//           (Source)
-//         </a>
-//       </p>
-//       <span
-//         className="tag"
-//         style={{
-//           backgroundColor: CATEGORIES.find((cat) => cat.name === doc.category)
-//             .color,
-//         }}
-//       >
-//         {doc.category}
-//       </span>
-//       <div className="condition">
-//         <button
-//           className={`condBtn ${usedClicked ? "clicked" : ""}`}
-//           onClick={() => handleStatus("used")}
-//         >
-//           ✅Used{doc.used}
-//         </button>
-//         <button
-//           className={`condBtn ${deprecatedClicked ? "clicked" : ""}`}
-//           onClick={() => handleStatus("deprecated")}
-//         >
-//           ❌Deprecated{doc.deprecated}
-//         </button>
-//       </div>
-//     </li>
-//   );
-// }
 export default App;
