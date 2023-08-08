@@ -34,7 +34,7 @@ function App() {
         if (currentCategory !== "all")
           query = query.eq("category", currentCategory);
         const { data: documentation, error } = await query
-          .order("used", { ascending: false })
+          .order("used", { ascending: true })
           .limit(100000);
 
         if (!error) setDocs(documentation);
@@ -245,7 +245,23 @@ function DocList({ docs }) {
 function Docs({ doc, onDelete }) {
   const [usedButtonClicked, setUsedButtonClicked] = useState(false);
   const [deprecatedButtonClicked, setDeprecatedButtonClicked] = useState(false);
+  useEffect(() => {
+    // Fetch the document from the database to get the updated used and deprecated values
+    async function fetchDocument() {
+      const { data, error } = await supabase
+        .from("documentation")
+        .select("used, deprecated")
+        .eq("id", doc.id)
+        .single();
 
+      if (!error) {
+        setUsedButtonClicked(data.used);
+        setDeprecatedButtonClicked(data.deprecated);
+      }
+    }
+
+    fetchDocument();
+  }, [doc.id]);
   async function handleStatus(property) {
     let usedValue = doc.used;
     let deprecatedValue = doc.deprecated;
