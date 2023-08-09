@@ -79,6 +79,7 @@ const CATEGORIES = [
   { name: "Nodejs", color: "#14b8a6" },
   { name: "Bootstrap", color: "#f97316" },
   { name: "DOM", color: "#8b5cf6" },
+  { name: "Git", color: "#3d3d3d" },
 ];
 function isValidUrl(string) {
   let url;
