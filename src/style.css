@@ -6,8 +6,6 @@
   box-sizing: border-box;
 }
 
-/* font-family: 'Coiny', cursive;
-font-family: 'Sono', sans-serif; */
 body {
   background-color: #292524;
   color: #fafaf9;
@@ -25,18 +23,13 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-@media (max-width: 900px) {
-  .header h1 {
-    font-size: 20px;
-    white-space: nowrap;
-  }
 
-  .header .btn {
-    font-size: 20px;
-    padding: 10px 22px 7px;
-    white-space: nowrap;
+@media (max-width: 600) {
+  .header {
+    display: block;
   }
 }
+
 .main {
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -57,7 +50,7 @@ section {
   overflow-x: hidden;
 }
 h1 {
-  font-size: 42px;
+  font-size: 30px;
   text-transform: uppercase;
   font-family: "coiny", sans-serif, cursive;
   /* to fix the padding caused by the font */
@@ -86,7 +79,7 @@ ul {
   background-color: #44403c;
   padding: 16px 24px;
   letter-spacing: -1px;
-  display: flex;
+  /* display: flex; */
   /* flex direction by default is set to row */
   align-items: center;
   border-radius: 16px;
@@ -95,6 +88,7 @@ ul {
   justify-content: space-between;
   align-items: center;
 }
+
 @media (max-width: 1200px) {
   .documentation {
     flex-direction: column;
@@ -120,6 +114,7 @@ ul {
   flex-shrink: 0;
   display: flex;
   gap: 8px;
+  justify-content: end;
 }
 .condition button {
   border: none;
@@ -226,7 +221,16 @@ ul {
   body {
     padding: 32px 48px;
   }
+  .header h1 {
+    font-size: 20px;
+    white-space: nowrap;
+  }
 
+  .header .btn {
+    font-size: 20px;
+    padding: 10px 22px 7px;
+    white-space: nowrap;
+  }
   .docForm {
     flex-direction: column;
     align-items: stretch;
@@ -257,4 +261,13 @@ ul {
 
 .condBtn.deleteBtn:hover {
   background-color: #b91c1c;
+}
+.doc-list {
+  padding-right: 20px; /* Adjust the value as needed */
+  /* ... other styles ... */
+}
+.documentation .paragraphs {
+  overflow-wrap: break-word;
+
+  /* ... other styles ... */
 }

@@ -277,7 +277,7 @@ function Docs({ doc, onDelete }) {
   }
   return (
     <li className="documentation">
-      <p>
+      <p className="paragraphs">
         {doc.text}
         <a
           className="source"
@@ -313,7 +313,7 @@ function Docs({ doc, onDelete }) {
         <button className="condBtn deleteBtn" onClick={handleDelete}>
           🗑️
         </button>
-        <button className="condBtn editBtn">✏️</button>
+        {/* <button className="condBtn editBtn">✏️</button> */}
       </div>
     </li>
   );
