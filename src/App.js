@@ -132,8 +132,7 @@ function DocForm({ setDocs, setShowForm }) {
     <form className="docForm" onSubmit={handleSubmit}>
       <textarea
         type="text"
-        rows="1"
-        cols="5"
+        rows={inputText.split("\n").length}
         placeholder="Add what you learned"
         value={inputText}
         onChange={(eventObj) => setInputText(eventObj.target.value)}
