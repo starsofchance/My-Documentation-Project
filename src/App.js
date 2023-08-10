@@ -130,13 +130,15 @@ function DocForm({ setDocs, setShowForm }) {
   }
   return (
     <form className="docForm" onSubmit={handleSubmit}>
-      <input
+      <textarea
         type="text"
+        rows="1"
+        cols="5"
         placeholder="Add what you learned"
         value={inputText}
         onChange={(eventObj) => setInputText(eventObj.target.value)}
         disabled={isUploading}
-      />
+      ></textarea>
 
       <span>{10000 - textLength}</span>
       <input

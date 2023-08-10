@@ -195,15 +195,23 @@ ul {
   gap: 16px;
   border-radius: 16px;
 }
+.docForm textarea,
 .docForm input,
 .docForm select {
   width: 200px;
   background-color: #78716c;
   border: none;
-  border-radius: 100px;
+  border-radius: 15px;
   padding: 14px;
   color: inherit;
   font-family: inherit;
+  overflow: hidden;
+}
+.docForm textarea::placeholder {
+  color: #a8a29e;
+}
+.docForm textarea:first-child {
+  flex-grow: 1;
 }
 .docForm input::placeholder {
   color: #a8a29e;
@@ -235,6 +243,7 @@ ul {
     flex-direction: column;
     align-items: stretch;
   }
+  .docForm textarea,
   .docForm input,
   .docForm select {
     width: auto;
