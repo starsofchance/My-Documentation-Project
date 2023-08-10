@@ -114,7 +114,7 @@ ul {
   flex-shrink: 0;
   display: flex;
   gap: 8px;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .condition button {
   border: none;
