@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import supabase from "./supabase";
 import "./style.css";
 function App() {
@@ -213,6 +214,7 @@ function DocList({ docs }) {
 function Docs({ doc, onDelete }) {
   const [usedButtonClicked, setUsedButtonClicked] = useState(false);
   const [deprecatedButtonClicked, setDeprecatedButtonClicked] = useState(false);
+  const processedText = doc.text.replace(/\n/g, "<br />");
   useEffect(() => {
     // Fetch the document from the database to get the updated used and deprecated values
     async function fetchDocument() {
@@ -279,8 +281,11 @@ function Docs({ doc, onDelete }) {
   }
   return (
     <li className="documentation">
-      <p className="paragraphs">
-        {doc.text}
+      <div>
+        <p
+          className="paragraphs"
+          dangerouslySetInnerHTML={{ __html: processedText }}
+        ></p>
         <a
           className="source"
           href={doc.source}
@@ -289,16 +294,8 @@ function Docs({ doc, onDelete }) {
         >
           (Source)
         </a>
-      </p>
-      <span
-        className="tag"
-        style={{
-          backgroundColor: CATEGORIES.find((cat) => cat.name === doc.category)
-            .color,
-        }}
-      >
-        {doc.category}
-      </span>
+      </div>
+
       <div className="condition">
         <button
           className={`condBtn ${usedButtonClicked ? "clicked" : ""}`}
@@ -316,6 +313,15 @@ function Docs({ doc, onDelete }) {
           🗑️
         </button>
         {/* <button className="condBtn editBtn">✏️</button> */}
+        <span
+          className="tag"
+          style={{
+            backgroundColor: CATEGORIES.find((cat) => cat.name === doc.category)
+              .color,
+          }}
+        >
+          {doc.category}
+        </span>
       </div>
     </li>
   );

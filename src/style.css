@@ -146,7 +146,7 @@ ul {
   /* only styles the anchor tags with a href attribute */
   color: #a8a29e;
   text-decoration: none;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   transition: 1s;
 }
 
@@ -277,6 +277,7 @@ ul {
 }
 .documentation .paragraphs {
   overflow-wrap: break-word;
+  white-space: pre-line;
 
   /* ... other styles ... */
 }
