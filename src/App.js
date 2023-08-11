@@ -9,7 +9,6 @@ function App() {
   const [docs, setDocs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentCategory, setCurrentCat] = useState("all");
-
   useEffect(
     function () {
       async function getDocuments() {
@@ -277,6 +276,8 @@ function Docs({ doc, onDelete }) {
 
     if (!error) {
       onDelete(doc.id);
+    } else {
+      console.error("Error deleting documentation:", error);
     }
   }
   return (
