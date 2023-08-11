@@ -3,33 +3,28 @@ import { useEffect, useState } from "react";
 import supabase from "./supabase";
 import "./style.css";
 function App() {
-  // part 1 of state variable:define state variable
   const [showForm, setShowForm] = useState(false);
-  // next state is lifted up to app so it would be accessable to DocForm and DocList
   const [docs, setDocs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentCategory, setCurrentCat] = useState("all");
-  useEffect(
-    function () {
-      async function getDocuments() {
-        setIsLoading(true);
+  useEffect(() => {
+    async function getDocuments() {
+      setIsLoading(true);
 
-        let query = supabase.from("documentation").select("*");
-        if (currentCategory !== "all")
-          query = query.eq("category", currentCategory);
-        const { data: documentation, error } = await query
-          .order("used", { ascending: true })
-          .limit(100000);
+      let query = supabase.from("documentation").select("*");
+      if (currentCategory !== "all")
+        query = query.eq("category", currentCategory);
+      const { data: documentation, error } = await query
+        .order("created_at", { ascending: false })
+        .limit(100000);
 
-        if (!error) setDocs(documentation);
-        else alert("There was a problem getting the data.");
-        setDocs(documentation);
-        setIsLoading(false);
-      }
-      getDocuments();
-    },
-    [currentCategory]
-  );
+      if (!error) setDocs(documentation);
+      else alert("There was a problem getting the data.");
+
+      setIsLoading(false);
+    }
+    getDocuments();
+  }, [currentCategory]);
 
   return (
     <>
@@ -117,15 +112,16 @@ function DocForm({ setDocs, setShowForm }) {
         ])
         .select();
       setIsUploading(false);
-      console.log(newDocumentation);
 
-      if (!error) setDocs((docs) => [newDocumentation[0], ...docs]);
-      // 5. reset the input fields
-      setInputText("");
-      setSource("");
-      setCategory("");
-      // 6.close the from
-      setShowForm(false);
+      if (!error) {
+        setDocs((prevDocs) => [newDocumentation[0], ...prevDocs]);
+        // 5. reset the input fields
+        setInputText("");
+        setSource("");
+        setCategory("");
+        // 6.close the from
+        setShowForm(false);
+      }
     }
   }
   return (
@@ -194,10 +190,14 @@ function CategoryFilter({ setCurrentCat }) {
 }
 function DocList({ docs }) {
   const [docsList, setDocsList] = useState(docs);
+
+  // const allDocs = docsList.concat(docs);
   function handleDelete(id) {
-    setDocsList(docsList.filter((doc) => doc.id !== id));
+    const updatedDocs = docsList.filter((doc) => doc.id !== id);
+    // setDocsList(docsList.filter((doc) => doc.id !== id));
+    setDocsList(updatedDocs);
   }
-  if (docs.length === 0)
+  if (docsList.length === 0)
     return <p className="loadingMassage">No Documentation in this category.</p>;
   return (
     <section>
@@ -205,6 +205,9 @@ function DocList({ docs }) {
         {docsList.map((doc) => (
           <Docs key={doc.id} doc={doc} onDelete={handleDelete} />
         ))}
+        {/* {docs.map((doc) => (
+          <Docs key={doc.id} doc={doc} onDelete={handleDelete} />
+        ))} */}
       </ul>
       <p>There are {docs.length} Documentation Entry in the Database.</p>
     </section>
