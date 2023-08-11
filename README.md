@@ -8,4 +8,4 @@
 # React Projects
 ## Project 1: My Documentations
 An Image of the project output.
-![](https://github.com/starsofchance/My-Documentation-Project/blob/main/Capture.PNG)
+![](https://github.com/starsofchance/My-Documentation-Project/blob/main/Animation.gif)
