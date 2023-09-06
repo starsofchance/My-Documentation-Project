@@ -129,7 +129,7 @@ function DocForm({ setDocs, setShowForm }) {
       <textarea
         type="text"
         rows={inputText.split("\n").length}
-        placeholder="Add what you learned"
+        placeholder="Add what you learned, and refresh to sea the post."
         value={inputText}
         onChange={(eventObj) => setInputText(eventObj.target.value)}
         disabled={isUploading}
